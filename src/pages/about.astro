@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from "astro:assets";
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+
+const courses = ["Kathak Classes",
+					"Bollywood Beginners Classes",
+					"Bollywood Advanced Classes",
+					"Semi Classical Classes",
+					"Customized Choreography",
+					"Wedding Choreography",
+					"Cultural Event Choreography"];
+---
+
+<BaseLayout title="About | Nritya Kalpna" description="About Nritya Kapna">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="Thanks for stopping by. Read below to learn more about us"
+			>
+				<Image
+					width="1553"
+					height="873"
+					src="/assets/soniaAboutpic.jpeg"
+					alt="About Kalpna"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Who are we</h2>
+				<div class="content">
+					<p>
+						Welcome to Nrityakalpna Dance School, where we celebrate the rich tapestry of culture and unleash the vibrant talents of our local community. <br />At NK Dance School, we believe that dance is not only a form of artistic expression but also a powerful medium for embracing diversity, preserving traditions and fostering unity. <br /><br />Our dance program not only emphasize technical excellence but also aim to instill a profound appreciation for cultural diversity.
+					</p>
+					<br />
+					<p>
+						We actively collaborate with local cultural organisations, community centers and schools to organise performances, charity events that bring community together. Wether you are a beginner or an experienced dancer, a child or an adult, NK Dance School welcomes you with open arms. <br /><br />Join us on this incredible journey of self - discovery, cultural exploration and artistic expression. Unleash your talent , connect with your roots and dance your way to a brighter , more enriched future.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Courses offered</h2>
+				<div class="content">
+					<p>We offer below dance courses</p>
+					<p>
+					<ul>
+					{courses.map(item => <li>{item}</li>)}
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
